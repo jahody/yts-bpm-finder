@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Music BPM Finder</title>
+  <link rel="stylesheet" href="popup.css">
+  <!-- Import Outfit and Inter fonts from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="glass-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon">♩</span>
+        <h1>BPM <span class="accent-text">Finder</span></h1>
+      </div>
+      <div class="header-actions">
+        <button id="btn-settings" class="btn-settings-toggle" title="API Settings">⚙️</button>
+        <span class="badge">v1.2.0</span>
+      </div>
+    </header>
+
+    <!-- Settings Drawer -->
+    <div id="settings-drawer" class="settings-drawer collapsed">
+      <h3 class="settings-title">GetSongBPM Settings</h3>
+      <div class="settings-group">
+        <label for="input-api-key" class="settings-label">API Key</label>
+        <div class="input-with-button">
+          <input type="password" id="input-api-key" placeholder="Enter API Key" autocomplete="off">
+          <button id="btn-save-settings" class="btn-save-settings">Save</button>
+        </div>
+        <p class="settings-help">
+          An API key is required to query BPM data. Register for a free key at 
+          <a href="https://getsongbpm.com/api" target="_blank">getsongbpm.com/api</a>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Currently Playing Song Details -->
+    <section class="section now-playing-section">
+      <h2 class="section-title">Currently Playing</h2>
+      <div class="card current-card">
+        <div class="track-details">
+          <h3 id="current-title" class="track-title">Loading track...</h3>
+          <p id="current-artist" class="track-artist">Make sure YouTube Music is playing</p>
+        </div>
+        <div class="bpm-display-container">
+          <div class="bpm-ring">
+            <div id="current-bpm-value" class="bpm-value">--</div>
+            <div class="bpm-label">BPM</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manual Lookup Form -->
+    <section class="section lookup-section">
+      <h2 class="section-title">Manual Search</h2>
+      <form id="search-form" class="search-form">
+        <div class="input-group">
+          <input type="text" id="input-title" placeholder="Song Title" required autocomplete="off">
+        </div>
+        <div class="input-group">
+          <input type="text" id="input-artist" placeholder="Artist Name" required autocomplete="off">
+        </div>
+        <button type="submit" class="btn-search">
+          <span>Search BPM</span>
+          <span class="btn-icon">⚡</span>
+        </button>
+      </form>
+    </section>
+
+    <!-- Search Results / Feedback -->
+    <div id="search-result-card" class="card search-result-card hidden">
+      <div class="result-details">
+        <h4 id="result-track-info" class="result-track-info">Track Info</h4>
+        <div id="result-bpm" class="result-bpm-badge">120 BPM</div>
+      </div>
+      <button id="close-result" class="btn-close">&times;</button>
+    </div>
+
+    <!-- Search History -->
+    <section class="section history-section">
+      <h2 class="section-title">Recent History</h2>
+      <ul id="history-list" class="history-list">
+        <li class="empty-history">No search history yet.</li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Data provided by <a href="https://getsongbpm.com" target="_blank">GetSongBPM</a></p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

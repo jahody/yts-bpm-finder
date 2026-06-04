@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Music BPM Finder",
+  "version": "1.2.0",
+  "description": "Finds and displays the BPM of songs on YouTube Music using the GetSongBPM API.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://api.getsong.co/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://music.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
